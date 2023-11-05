@@ -27,11 +27,11 @@ async def handle_client(client_socket,client_address):
   # CODIGO PRINCIPAL
   # ----------------------------------------------------
   request = recv_message(client_socket)
-  await asyncio.sleep(0)
+  # await asyncio.sleep(0)
 
   response = "Message from the server"
   send_message(client_socket,response)
-  await asyncio.sleep(0)
+  # await asyncio.sleep(0)
 
   # ----------------------------------------------------
   client_socket.close()
@@ -50,7 +50,6 @@ async def main():
       while True:
         client_socket, client_address = await loop.sock_accept(server_socket)
         asyncio.create_task(handle_client(client_socket,client_address))
-        await asyncio.sleep(0)
 
     except KeyboardInterrupt:
       print("\nExiting")
