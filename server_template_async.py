@@ -1,24 +1,6 @@
 import socket
 import asyncio
-
-# ----------------------------------------------------------------------------
-
-BUFFSIZE = 1024
-
-def send_message(socket: socket.socket, message = "Mensaje default"):
-  raw_message = message.encode("utf-8")
-  socket.sendall(raw_message)
-  address = socket.getsockname()
-  print("========================================================")
-  print(f"Sent: '{message}' to {address[0]}:{address[1]}")
-
-def recv_message(socket: socket.socket) -> str:
-  raw_message = socket.recv(BUFFSIZE)
-  message = raw_message.decode("utf-8")
-  address = socket.getpeername()
-  print("========================================================")
-  print(f"Received: '{message}' from {address[0]}:{address[1]}")
-  return message
+from messages import send_message, recv_message
 
 async def handle_client(client_socket,client_address):
   print("========================================================")
@@ -35,7 +17,6 @@ async def handle_client(client_socket,client_address):
 
   # ----------------------------------------------------
   client_socket.close()
-# ----------------------------------------------------------------------------
 
 async def main():
   loop = asyncio.get_event_loop()
