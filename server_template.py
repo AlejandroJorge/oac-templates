@@ -4,14 +4,14 @@ from messages import send_message, recv_message
 def handle_client(client_socket,client_address):
   print("========================================================")
   print(f"Connection accepted from {client_address[0]}:{client_address[1]}")
-  with client_socket:
-    # ----------------------------------------------------
-    # CODIGO PRINCIPAL
-    # ----------------------------------------------------
-    request = recv_message(client_socket)
-    response = "Message from the server"
-    send_message(client_socket,response)
-    # ----------------------------------------------------
+  # ----------------------------------------------------
+  # CODIGO PRINCIPAL
+  # ----------------------------------------------------
+  request = recv_message(client_socket)
+  response = "Message from the server"
+  send_message(client_socket,response)
+  # ----------------------------------------------------
+  client_socket.close()
 
 def main():
   server_address = ("localhost",5000)
